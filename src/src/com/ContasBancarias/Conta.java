@@ -18,15 +18,13 @@ public class Conta {
     protected Cliente cliente;
     protected String senha;
     protected List<Operacao> historicoOperacoes;
-    protected int tipoConta;
 
-    public Conta( Cliente cliente, String senha, int tc) {
+    public Conta( Cliente cliente, String senha) {
         this.cliente = cliente;
         this.senha = senha;
         this.agencia = AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
         this.saldo = 0.0;
-        this.tipoConta = tc;
         this.historicoOperacoes = new ArrayList<>();
     }
 
@@ -100,12 +98,12 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public int getTipoConta() {
-        return tipoConta;
-    }
-
     public Conta getContaPagadora() {
         return null;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public void imprimirInfosComuns() {

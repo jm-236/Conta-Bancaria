@@ -18,7 +18,7 @@ public class ContaSalario extends Conta {
     }
 
     public ContaSalario(Cliente cliente, String senha, Conta cp, Conta ct) {
-        super(cliente, senha, 3);
+        super(cliente, senha);
         this.contaPagadora = cp;
         this.contaTransferencias = ct;
     }
