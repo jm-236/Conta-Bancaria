@@ -2,7 +2,9 @@ package com.ContasBancarias;
 
 import com.Cliente.Cliente;
 import com.Operacao.Operacao;
+import com.Operacao.TipoOperacao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class Conta {
     public void sacar(double valor) {
         if (valor > 0 && valor <= this.saldo) {
             this.setSaldo(this.getSaldo() - valor);
-            this.historicoOperacoes.add(new Operacao(/* Adicionar argumentos posteriormente*/));
+            this.historicoOperacoes.add(new Operacao(TipoOperacao.SAQUE, valor));
         } else {
             System.out.println("Saldo insuficiente");
         }
@@ -38,7 +40,7 @@ public class Conta {
     public void depositar(double valor) {
         if (valor > 0) {
             this.setSaldo(this.getSaldo() + valor);
-            this.historicoOperacoes.add(new Operacao(/* Adicionar argumentos posteriormente*/));
+            this.historicoOperacoes.add(new Operacao(TipoOperacao.DEPOSITO, valor, this));
         } else {
             // configurar tratamento de exceções posteriormente
             System.out.println("Valor inválido");
@@ -49,8 +51,8 @@ public class Conta {
         if (valor > 0 && valor <= this.saldo && destino != null) {
             this.setSaldo(this.getSaldo() - valor);
             destino.setSaldo(destino.getSaldo() + valor);
-            this.historicoOperacoes.add(new Operacao(/* Adicionar argumentos posteriormente*/));
-            destino.historicoOperacoes.add(new Operacao(/* Adicionar argumentos posteriormente*/));
+            this.historicoOperacoes.add(new Operacao(TipoOperacao.TRANSFERENCIA_ENVIADA, valor, destino, this));
+            destino.historicoOperacoes.add(new Operacao(TipoOperacao.TRANSFERENCIA_RECEBIDA, valor, this, destino));
         } else {
             // configurar tratamento de exceções posteriormente
             System.out.println("Saldo insuficiente");
@@ -62,8 +64,6 @@ public class Conta {
         System.out.println("Saldo: " + this.getSaldo());
         System.out.println("Histórico de operações: ");
 
-        // ordenar as operações por data e na ordem decrescente
-        // printar os saldos antes tbm
         for (Operacao operacao : this.historicoOperacoes) {
             System.out.println(operacao);
         }

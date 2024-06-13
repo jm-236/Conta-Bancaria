@@ -3,5 +3,6 @@ package com.Operacao;
 public enum TipoOperacao {
     SAQUE,
     DEPOSITO,
-    TRANSFERENCIA
+    TRANSFERENCIA_ENVIADA,
+    TRANSFERENCIA_RECEBIDA
 }

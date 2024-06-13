@@ -25,6 +25,14 @@ public class Operacao {
         this.contaAlvo = contaAlvo;
     }
 
+    public Operacao(TipoOperacao tipoDaOperacao, double valor) {
+        this.valor = valor;
+        this.tipoDaOperacao = tipoDaOperacao;
+        this.dataOperacao = LocalDate.now();
+        this.contaAlvo = null;
+        this.contaInicial = null;
+    }
+
     public Operacao(TipoOperacao tipoDaOperacao, double valor, Conta contaAlvo, Conta contaInicial) {
         this.dataOperacao = LocalDate.now();
         this.tipoDaOperacao = tipoDaOperacao;
@@ -58,7 +66,10 @@ public class Operacao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Operacao operacao = (Operacao) o;
-        return Double.compare(valor, operacao.valor) == 0 && Objects.equals(dataOperacao, operacao.dataOperacao) && Objects.equals(tipoDaOperacao, operacao.tipoDaOperacao) && Objects.equals(contaAlvo, operacao.contaAlvo) && Objects.equals(contaInicial, operacao.contaInicial);
+        return Double.compare(valor, operacao.valor) == 0 && Objects.equals(dataOperacao, operacao.dataOperacao)
+                && Objects.equals(tipoDaOperacao, operacao.tipoDaOperacao)
+                && Objects.equals(contaAlvo, operacao.contaAlvo)
+                && Objects.equals(contaInicial, operacao.contaInicial);
     }
 
     @Override
@@ -72,13 +83,18 @@ public class Operacao {
         String valorFormatado = df.format(getValor());
         switch (this.tipoDaOperacao){
             case SAQUE -> {
-                return "Saque: R$" + valorFormatado;
+                return "Saque: -R$" + valorFormatado;
             }
             case DEPOSITO -> {
-                return "Depósito: R$" + valorFormatado;
+                return "Depósito: +R$" + valorFormatado;
             }
-            case TRANSFERENCIA -> {
-                return "Transferência: R$" + valorFormatado + "para " + contaAlvo.getCliente().getNome();
+            case TRANSFERENCIA_ENVIADA -> {
+                return "Transferência: -R$" + valorFormatado + "de " + contaInicial.getCliente().getNome()
+                        + " para " + contaAlvo.getCliente().getNome();
+            }
+            case TRANSFERENCIA_RECEBIDA -> {
+                return "Transferência: +R$" + valorFormatado + "de " + contaInicial.getCliente().getNome()
+                        + " para " + contaAlvo.getCliente().getNome();
             }
         }
         return "Tipo de operação não identificado";
