@@ -5,6 +5,7 @@ import com.ContasBancarias.ContaCorrente;
 import com.ContasBancarias.ContaPoupanca;
 import com.ContasBancarias.ContaSalario;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -36,6 +37,15 @@ public class Main {
                 case 1:
                     System.out.print("Digite o número da conta: ");
                     int numeroConta = sc.nextInt();
+                    List<Conta> contasBB = BB.getContas();
+                    Conta contaEscolhida = contasBB.stream().filter(c -> c.getNumero() == numeroConta)
+                            .findFirst().orElse(null);
+                    if (contaEscolhida == null) {
+                        System.out.println("Erro: conta não encontrada");
+                        continue;
+                    }
+                    System.out.println("Conta encontrada.");
+
                 case 2:
                     System.out.println("Você escolheu a opção 2");
                     continue;
