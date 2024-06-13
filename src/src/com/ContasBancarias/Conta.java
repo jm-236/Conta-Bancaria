@@ -81,6 +81,10 @@ public class Conta {
         return saldo;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
