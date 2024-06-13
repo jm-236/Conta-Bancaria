@@ -5,7 +5,7 @@ import com.Operacao.Operacao;
 
 public class ContaPoupanca extends Conta {
     public ContaPoupanca(Cliente cliente, String senha) {
-        super(cliente, senha);
+        super(cliente, senha, 3);
     }
 
     public void imprimirExtrato() {

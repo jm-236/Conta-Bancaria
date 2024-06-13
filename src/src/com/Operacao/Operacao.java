@@ -89,11 +89,11 @@ public class Operacao {
                 return "Depósito: +R$" + valorFormatado;
             }
             case TRANSFERENCIA_ENVIADA -> {
-                return "Transferência: -R$" + valorFormatado + "de " + contaInicial.getCliente().getNome()
+                return "Transferência: -R$" + valorFormatado + " de " + contaInicial.getCliente().getNome()
                         + " para " + contaAlvo.getCliente().getNome();
             }
             case TRANSFERENCIA_RECEBIDA -> {
-                return "Transferência: +R$" + valorFormatado + "de " + contaInicial.getCliente().getNome()
+                return "Transferência: +R$" + valorFormatado + " de " + contaInicial.getCliente().getNome()
                         + " para " + contaAlvo.getCliente().getNome();
             }
         }

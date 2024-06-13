@@ -6,7 +6,7 @@ import com.Operacao.Operacao;
 public class ContaCorrente extends Conta{
 
     public ContaCorrente(Cliente cliente, String senha) {
-        super(cliente, senha);
+        super(cliente, senha, 1);
     }
 
     public void imprimirExtrato() {

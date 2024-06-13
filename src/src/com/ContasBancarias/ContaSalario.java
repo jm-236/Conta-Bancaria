@@ -12,12 +12,13 @@ public class ContaSalario extends Conta {
         return contaTransferencias;
     }
 
+    @Override
     public Conta getContaPagadora() {
         return contaPagadora;
     }
 
     public ContaSalario(Cliente cliente, String senha, Conta cp, Conta ct) {
-        super(cliente, senha);
+        super(cliente, senha, 3);
         this.contaPagadora = cp;
         this.contaTransferencias = ct;
     }
